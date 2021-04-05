@@ -39,5 +39,6 @@ const extractAndConvert = async (fileName) => {
     
 }
    
-const relNotesXml = extractAndConvert('EFUS-RelNotes-A.xml.gz');
-// const INCXml = extractAndConvert('EFUS-INC-A.xml.gz');
+extractAndConvert('EFUS-RelNotes-A.xml.gz');
+// This one take a bit longer since it is a big file
+// extractAndConvert('EFUS-INC-A.xml.gz');
