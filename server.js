@@ -27,16 +27,18 @@ const gzip = util.promisify(gunzip)
 
 
 const extractAndConvert = async (fileName) => {
-
-    // extract .gz file
-    await gzip(compFolder + fileName, decompFolder + 'extract.xml')
-    // Read converted File
-    const data = fs.readFileSync(decompFolder + 'extract.xml')
-    // Convert xml to JSON
-    var json = parser.toJson(data, {object: true});
-    // Console log content
-    console.log(JSON.stringify(json, null, 2));
-    
+    try {
+        // extract .gz file
+        await gzip(compFolder + fileName, decompFolder + 'extract.xml')
+        // Read converted File
+        const data = fs.readFileSync(decompFolder + 'extract.xml')
+        // Convert xml to JSON
+        var json = parser.toJson(data, {object: true});
+        // Console log content
+        console.log(JSON.stringify(json, null, 2));
+    } catch(err) {
+        console.log(err);
+    }
 }
    
 extractAndConvert('EFUS-RelNotes-A.xml.gz');
