@@ -14,6 +14,7 @@
     "decompress": "^4.2.1",
     "decompress-targz": "^4.1.1",
     "gunzip-file": "^0.1.1",
+    "xml2js": "^0.4.23",
     "xml2json": "^0.12.0"
   }
 }
