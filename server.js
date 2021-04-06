@@ -1,23 +1,53 @@
+const util = require('util');
 const decompress = require('decompress');
 const decompressTargz = require('decompress-targz');
+const csv = require('csvtojson');
 
 // This example will extract the files from the LSR tar.gz file 
 // and save inside a folder called "/assets/extracted"
-decompress('./assets/comp-files/EFUS-LSR-INC-A.tar.gz', './assets/extracted', {
-    plugins: [
-        decompressTargz()
-    ]
-}).then(() => {
-    console.log('Files decompressed');
-});
+const extractTar = async () => {
+    try {
+        await decompress('./assets/comp-files/EFUS-LSR-INC-A.tar.gz', './assets/extracted', { plugins: [decompressTargz()]});
+        console.log('Files decompressed');
+    } catch(err) {
+        console.log(err);
+    }
+}
+extractTar();
 
+// This example will extract the files from the LSR tar.gz file 
+// and save inside a folder called "/assets/extracted"
+// read folders inside extracted and convert csv files to JSON
+// console log JSON
+const extractTarAndConvertCsv = async() => {
+    try {
+        // Decompress tar.gz file
+        await decompress('./assets/comp-files/EFUS-LSR-INC-A.tar.gz', './assets/extracted', { plugins: [decompressTargz()]});
+        // Read name for new folder containing CSV files
+        const newFolderName = fs.readdirSync('./assets/extracted');
+        // Get names of CSV files
+        const files = fs.readdirSync('./assets/extracted/' + newFolderName);
+        // Loop and convert csv to json
+        files.forEach(file => {
+            csv()
+                .fromFile('./assets/extracted/' + newFolderName + '/' + file)
+                .then((jsonObj)=>{
+                    // console log json from each file
+                    console.log(jsonObj);
+                })
+          });
+
+    } catch(err) {
+        console.log(err);
+    }
+}
+// extractTarAndConvertCsv();
 
 // This example will extract the .gz file
 // Read it's content
 // Convert to JSON
 const fs = require('fs');
 const path = require('path');
-const util = require('util');
 const gunzip = require('gunzip-file')
 const parser = require('xml2json');
 var xml2js = require('xml2js');
@@ -44,7 +74,7 @@ const extractAndConvertA = async (fileName) => {
     }
 }
    
-extractAndConvertA('EFUS-RelNotes-A.xml.gz');
+// extractAndConvertA('EFUS-RelNotes-A.xml.gz');
 // This one take a bit longer since it is a big file
 // extractAndConvertA('EFUS-INC-A.xml.gz');
 
