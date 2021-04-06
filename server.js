@@ -50,7 +50,7 @@ extractAndConvertA('EFUS-RelNotes-A.xml.gz');
 
 
 
-//******** USING ANOTHER "xml2js" PACKAGE TO CONVERT TO JSON */
+//******** USING ANOTHER PACKAGE "xml2js" TO CONVERT TO JSON */
 
 const extractAndConvertB = async (fileName) => {
     try {
