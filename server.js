@@ -17,7 +17,7 @@ extractTar();
 
 // This example will extract the files from the LSR tar.gz file 
 // and save inside a folder called "/assets/extracted"
-// read folders inside extracted and convert csv files to JSON
+// read folder inside extracted and convert csv files to JSON
 // console log JSON
 const extractTarAndConvertCsv = async() => {
     try {
