@@ -107,7 +107,7 @@ const extractAndConvertB = async (fileName) => {
 // Run Bash scripts using NodeJs built-in module "child_process"
 const { exec } = require('child_process');
 
-const runBashFile = () => {
+const runShellScript = () => {
     // execute command to run .sh file
     const myShellScript = exec('sh scripts/start.sh');
     
@@ -122,4 +122,4 @@ const runBashFile = () => {
     });
 }
 
-runBashFile();
+runShellScript();
