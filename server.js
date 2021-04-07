@@ -13,7 +13,7 @@ const extractTar = async () => {
         console.log(err);
     }
 }
-extractTar();
+// extractTar();
 
 // This example will extract the files from the LSR tar.gz file 
 // and save inside a folder called "/assets/extracted"
@@ -102,3 +102,24 @@ const extractAndConvertB = async (fileName) => {
 }
 // extractAndConvertB('EFUS-RelNotes-A.xml.gz');
 // extractAndConvertB('EFUS-INC-A.xml.gz');
+
+
+// Run Bash scripts using NodeJs built-in module "child_process"
+const { exec } = require('child_process');
+
+const runBashFile = () => {
+    // execute command to run .sh file
+    const myShellScript = exec('sh scripts/start.sh');
+    
+    myShellScript.stdout.on('data', (data)=>{
+        console.log(data); 
+    });
+    myShellScript.stderr.on('data', (data)=>{
+        console.error(data);
+    });
+    myShellScript.on('exit', function (code) {
+        console.log('child process exited with code ' + code);
+    });
+}
+
+runBashFile();
